@@ -1,16 +1,18 @@
 
-# Probability Density Functions
+# The Probability Density Function (PDF)
+
+## Introduction
 So far we have looked at discrete random variables and how to calculate/visualize their distribution functions. In this lesson, we shall deal with continuous variables and probability density function (pdf) as a way to model the probability of occurrence for such variables.
 
 ## Objectives
-Students would be able to :
+You will be able to:
 * Understand the use of calculating PDFs for real valued random variables
 * Differentiate between probability and probability densities
 * Visualize Density Estimation plots for a given dataset in seaborn
-* Calculate pdfs through interpolation 
+* Calculate PDFs through interpolation 
 
 
-## Continuous Variables:
+## Continuous Variables
 
 Continuous variables can take any real values. Think of it like this: If that number in the variable can keep counting, then its most probably a continuous variable.
 
@@ -30,7 +32,7 @@ The dots show that the calculation can be ongoing infinitely based on what measu
 
 So height , weight, blood pressure  etc. and such other values would be categorized as continuous variable.
 
-### Probability vs. Probability Density 
+## Probability vs. Probability Density 
 
 Continuous variables can take on an infinite number of variables. For example, you could have a random variable Y that represents possible heights for a number of individuals in a survey group can be shown as given below:
 <img src="pdf1.png" width = 300>
@@ -47,7 +49,7 @@ Written in notation, the question becomes:
 
 > **P( 60 < Height < 70 )**
 
-### Interpreting pdf
+## Interpreting PDF
 
 Probability functions are great for figuring out **intervals** because as shown above, it is hard to identify an exact point. A height of 6 feet (72 inches) is actually considered interval between say 5.99 feet and 6.01 feet which makes it an interval for dealing with this continuous variable. So we have to be careful when reading probability density functions, especially when it comes to exact numbers. For heights, What about the probability any person will weigh exactly 6 feet? Written in notation, the question would be:
 
@@ -59,7 +61,7 @@ Looking at the graph, you might think that the probability of a person having he
 
 And now we can say this probability interval captures 5% of individuals in the data. The width of such an interval can be set according to nature of data under observation and also level of accuracy required. 
 
-### The Area Under Curve
+## The Area Under Curve
 
 Another way to look at this is when plotting the “area” for exactly 72 inch, it would actually just be a 1-dimensional line, having no area at all (i.e. probability = 0). So we need to measure intervals for continuous variables as shown below:
 
@@ -73,7 +75,7 @@ The formal mathematical representation for calculating a area under curve is sho
 
 We shall look at this in detail when talking about probabilities with normal distributions. Lets move to learning some skills to estimate and plot such density functions in python. 
 
-### Visualizing probability Density Functions
+## Visualizing probability Density Functions
 
 pdfs can be visualized using hitograms and density plots. We have had quite a bit of practice on histograms. We shall now look at how to plot a density plot for a distributions in python. 
 
@@ -92,7 +94,7 @@ The histogram (left) and kernel density estimate (right) are constructed using t
 
 
 
-#### Seaborn !
+#### Seaborn!
 
 At this stage , let us give you a quick intro. to another popular visualization library called **Seaborn**, which can do wonders for statistical visualizations. We shall quickly look into plotting density plots at this stage, and revisit it again in a later section to highlight its full potential. 
 
@@ -277,7 +279,7 @@ sns.distplot(data.Height,
 ![png](index_files/index_19_0.png)
 
 
-### Interpolation
+## Interpolation
 
 Another (rather naive - yet effective) way is to estimate a density function using interpolation between the peaks of histogram. We can use the np.histogram function to calculate histogram values and interpolate between these values to plot a density curve.\
 
