@@ -14,23 +14,13 @@ You will be able to:
 
 ## Continuous Variables
 
-Continuous variables can take any real values. Think of it like this: If that number in the variable can keep counting, then its most probably a continuous variable.
-
-### Example:
-
-Let's say that the height of a person is 6.1 feet and thats where we normally stop. Or lets say we want to get a bit more accurate and call it 6.15 feet. 
-
-But in reality the height could actually be ..
-
-6.1520436512094802388472039874222 ………………………………………………… Feet. 
-
-The dots show that the calculation can be ongoing infinitely based on what measures and equipment we use for calculating height. This is what we meant by  “keep counting”. 
+Continuous variables can take on any real value. For example, let's say that the height of a person is 6.1 feet. How do we know they are exactly 6.1 feet? How precise was our measurement? In reality the height could actually be 6.11 feet, 6.09 feet or 6.1000033 feet.
 
 <img src = "height.jpg" width= 200>
 
-> We can not identify the exact value of a continuous variable
+Ultimately, we can not identify the exact value of a continuous variable. Instead, we can approximate it to a given accuracy given a measuremtn tool. These mathematical nuances will lead to some interesting points when investigating the associated probabilities of these values. 
 
-So height , weight, blood pressure  etc. and such other values would be categorized as continuous variable.
+For applications, remember that height , weight, blood pressure  and other values that can take on any real value within a range are continuous variables.
 
 ## Probability vs. Probability Density 
 
@@ -55,7 +45,7 @@ Probability functions are great for figuring out **intervals** because as shown 
 
 > **P( Height = 72 )**
 
-Looking at the graph, you might think that the probability of a person having height of exactly six feet it 0.05 or 5%, but this not accurate. The idea that 5% of people are **exactly** 6 ft tall is just not conceivable. Heights would differ in terms of millimeters, micrometers or even nanometers. The person could be 6.00012 or 5.99987 feet tall. In fact, the probability of someone being exactly 6ft is so tiny. it’s practically **zero**. So we need to define an interval to capture the value. If we set our interval as heights between say 71.9 and 72.1 inches, we can write this as:
+Looking at the graph, you might think that the probability of a person having height of exactly six feet it 0.05 or 5%, but this is not the case. The idea that 5% of people are **exactly** 6 ft tall is just not conceivable. Heights would differ in terms of millimeters, micrometers or even nanometers. The person could be 6.00012 or 5.99987 feet tall. In fact, the probability of someone being exactly 6ft is zero. So we need to define an interval to capture the value. If we set our interval as heights between say 71.9 and 72.1 inches, we can write this as:
 
 > **P( 71.9 < Height < 72.1 )**
 
@@ -94,7 +84,7 @@ The histogram (left) and kernel density estimate (right) are constructed using t
 
 
 
-#### Seaborn!
+## Seaborn 
 
 At this stage , let us give you a quick intro. to another popular visualization library called **Seaborn**, which can do wonders for statistical visualizations. We shall quickly look into plotting density plots at this stage, and revisit it again in a later section to highlight its full potential. 
 
@@ -356,4 +346,4 @@ So here it is. Our normalized histogram with a probability density curve. We sha
 
 
 ## Summary
-In this lesson we looked at the probability density function and identified the difference between point probabilities that we saw with categorical variables, to probability density functions for continuous variables. We shall further explore these ideas in proceeding lessons. 
+In this lesson we looked at the probability density function and identified the difference between point probabilities that we saw with categorical variables, to probability density functions for continuous variables. One very important note was the probability of a continuous variable taking a an exact value is zero! Instead, we saw that we must look at probabilities of a continuous variable falling with a range of values. This corresponded to calculating the area between these bounds under the PDF. We shall further explore these ideas in proceeding lessons. 
