@@ -2,109 +2,140 @@
 # The Probability Density Function (PDF)
 
 ## Introduction
-So far we have looked at discrete random variables and how to calculate/visualize their distribution functions. In this lesson, we shall deal with continuous variables and probability density function (pdf) as a way to model the probability of occurrence for such variables.
+So far, you learned about discrete random variables and how to calculate or visualize their distribution functions. In this lesson, you'll learn about continuous variables and probability density function (pdf) as a way to model the probability of occurrence for these types of variables.
 
 ## Objectives
 You will be able to:
-* Understand the use of calculating PDFs for real valued random variables
+* Understand the use of calculating PDFs for real-valued random variables
 * Differentiate between probability and probability densities
 * Visualize Density Estimation plots for a given dataset in seaborn
 * Calculate PDFs through interpolation 
 
-
 ## Continuous Variables
 
-Continuous variables can take on any real value. For example, let's say that the height of a person is 6.1 feet. How do we know they are exactly 6.1 feet? How precise was our measurement? In reality the height could actually be 6.11 feet, 6.09 feet or 6.1000033 feet.
+Continuous variables can take on any real value. For example, let's say that the height of a person is 6.1 feet. Is this person _actually_ exactly 6.1 feet? How precise is this measurement? In reality, the height could be 6.11 feet, 6.09 feet or 6.1000033 feet.
 
-<img src = "height.jpg" width= 200>
+Ultimately, we can not identify the exact value of a continuous variable. Instead, we can approximate it to a given accuracy. These mathematical nuances lead to some interesting properties when investigating the associated probabilities of these values. 
 
-Ultimately, we can not identify the exact value of a continuous variable. Instead, we can approximate it to a given accuracy given a measuremtn tool. These mathematical nuances will lead to some interesting points when investigating the associated probabilities of these values. 
+Typical examples of continuous variables are height, weight, temperature, and other variables that can take on any real value.
 
-For applications, remember that height , weight, blood pressure  and other values that can take on any real value within a range are continuous variables.
+## Probability versus Probability Density 
 
-## Probability vs. Probability Density 
+Continuous variables can take on an infinite number of variables. Let's have another look at the Temperature in NYC on June 1st. Here, we can say our random variable X represents possible temperatures on June 1st in NYC.
 
-Continuous variables can take on an infinite number of variables. For example, you could have a random variable Y that represents possible heights for a number of individuals in a survey group can be shown as given below:
-<img src="pdf1.png" width = 300>
 
-Looking at above histogram we can see that most of the values lie around the mean (around 67 inches). As we move away from the mean on both directions, the frequency of observations reduce creating two tails at both ends. The red line above shows a probability "**Density**" function, as compared to Probability functions we saw with cdf and pmf. A Probability Density Function (pdf) helps identify the regions in the distribution where observations are more likely to occur i.e. it is more dense. Remember that while dealing with pmfs, we calculated the **mass** for each class. For the case of continuous variable, we do not have fixed number of possible outcomes as described above. so instead we create a density function.  
+<img src="images/weather_NYC.png" width ="500">
 
-For the distribution above, the mean region has a high probability density as compared to tails which is reflected on y -axis. This is an example of a **Normal Distribution** which we shall look at next. 
 
->The probability density function(also called a probability distribution function) shown above shows all possible values for height, which for this case, has an infinite amount of possibilities. 
+Looking at plot above, you can see that most of the values lie around the mean (around 80 Degrees Fahrenheit). As you move away from the mean on both directions, the blue line goes down creating two tails at both ends. The blue line above shows a **Probability Density Function**, as compared to probability functions we saw when looking at the PMFs.
 
-We can use probability density functions to answer a question like:
-What is the probability that a person's height is between 60  and 70  inches? 
-Written in notation, the question becomes:
 
-> **P( 60 < Height < 70 )**
+A Probability Density Function (pdf) helps identify the regions in the distribution where observations are more likely to occur, on other words, where the observation occurence is **more dense**. It is actually not hard to think about the analogy with a probability mass function. Imagine that we would put out temperatures in "bins" of about 1.5 degree Fahrenheit. This is what your function would look like:
 
-## Interpreting PDF
+<img src="images/weather_NYC_21.png" width ="500">
 
-Probability functions are great for figuring out **intervals** because as shown above, it is hard to identify an exact point. A height of 6 feet (72 inches) is actually considered interval between say 5.99 feet and 6.01 feet which makes it an interval for dealing with this continuous variable. So we have to be careful when reading probability density functions, especially when it comes to exact numbers. For heights, What about the probability any person will weigh exactly 6 feet? Written in notation, the question would be:
+The histogram you see here may remind you very much of the PMF you saw before! Remember that when dealing with PMFs, you calculated the **mass** for each class, or the number of occurrences. This is exactly what we did creating this histogram. The idea is that, when you "bin" your continuous variables, and you gradually increase the number of bins used, you get a function-like outline of your bins which looks exactly like the PDF:
 
-> **P( Height = 72 )**
+<img src="images/weather_NYC_250.png" width ="500">
 
-Looking at the graph, you might think that the probability of a person having height of exactly six feet it 0.05 or 5%, but this is not the case. The idea that 5% of people are **exactly** 6 ft tall is just not conceivable. Heights would differ in terms of millimeters, micrometers or even nanometers. The person could be 6.00012 or 5.99987 feet tall. In fact, the probability of someone being exactly 6ft is zero. So we need to define an interval to capture the value. If we set our interval as heights between say 71.9 and 72.1 inches, we can write this as:
+For the distribution  of NYC temperatures, the mean region has a high probability density as compared to tails. This is that more extreme temperatures (roughly <70 or >90) are way less likely on a late spring day like June 1. 
+The function shape here is an example of a **Normal Distribution**, which you'll learn more about later.
 
-> **P( 71.9 < Height < 72.1 )**
-
-And now we can say this probability interval captures 5% of individuals in the data. The width of such an interval can be set according to nature of data under observation and also level of accuracy required. 
-
-## The Area Under Curve
-
-Another way to look at this is when plotting the “area” for exactly 72 inch, it would actually just be a 1-dimensional line, having no area at all (i.e. probability = 0). So we need to measure intervals for continuous variables as shown below:
-
-![](pdf2.jpg)
+>The probability density function (also called a probability distribution function) shows all possible values for temperature, which in theory has an infinite amount of possibilities. 
 
 
 
-The formal mathematical representation for calculating a area under curve is shown below:
-![](formula.jpg)
-> **pdf is the probability function F(x), such that x falls between two values (a and b), is equals to the integral (area under the curve) from a to b**
+## Interpreting the PDF
 
-We shall look at this in detail when talking about probabilities with normal distributions. Lets move to learning some skills to estimate and plot such density functions in python. 
+Let's look at this plot again, and the y-axis:
 
-## Visualizing probability Density Functions
+<img src="images/weather_NYC_21_red.png" width ="500">
 
-pdfs can be visualized using hitograms and density plots. We have had quite a bit of practice on histograms. We shall now look at how to plot a density plot for a distributions in python. 
+Looking at the histogram, and based on the middle bin, you can make the following statement:
 
-#### Density Estimation and Plotting
+**about 13% of the time you'll observe a temperature between 79.3 and 80.8 Degrees Fahrenheit**.
+
+This is a typical probability pass function statement, where one bar or bin is associated with a fixed probability. The reason why we were able to do this, is because we _binned_ the temperatures.
+
+When looking at Probability Density Functions, however, you need to be **very** careful when reading probability density functions, especially when it comes to exact numbers. For example, think about this: if we have a very high tech thermometer, what is the probability that the temperature in NYC on June 1 is _exactly_ 80 Degrees?
+
+$$P(\text{Temp}=80)$$
+
+Looking at the graph, you may think that this probability is around 0.13, **but this is not the case**. The idea of continuous variables and PDFs is that the probability of any given arbitrary number is always 0, simply because there is an infinite number of possibilities we can check (what is $P(\text{Temp}=80.3)? $ $P(\text{Temp}=80.0001)$?$P(\text{Temp}=80.00000895)?$) So, the probability of the temperature being exactly 80 Degrees is 0. When using a PDF, the only way of finding a probability associated with a certain temperature here is when using an _interval_ of ranges, so something like:
+
+$$P( 79.9 < \text{Temp} < 80.1 )$$
+
+You'll see more on this later!
+
+## Visualizing Probability Density Functions
+
+PDFs can be visualized using histograms and density plots. You've had quite a bit of practice on histograms. 
+Now, you'll learn how to plot a density plot for a distribution in python. 
+
+### Density Estimation and Plotting
  
-A density plot is a "smoothed" version of a histogram estimated from the observations. Estimating the density function from given data could use parametric or non-parametric methods. 
+As you've seen before, a density plot is a "smoothed" version of a histogram estimated from the observations. To estimate a density function from given continuous data, you can use parametric or non-parametric methods. 
 
-**Parametric methods** use parameters like mean and standard deviation of given data and attempt to work out the **shape** of the distribution that the data belongs to. These may implement the a notion of maximum likelihood to **fit** and distribution to the given data.  
+**Parametric methods** use parameters like mean and standard deviation of given data and attempt to work out the **shape** of the distribution that the data belongs to. These may implement the notion of maximum likelihood to fit a distribution to the given data. You'll learn more about this later.
 
-**Kernel density estimation** or KDE is a common  non-parametric estimation technique to plot a curve (the kernel) at every individual data point. These curves are then added to plot a smooth density estimation. The kernel most often used is a Gaussian (which produces a bell curve at each data point). Other kernels can be used in special cases when the underlying distribution is not normal. 
+**Kernel density estimation** or KDE is a common non-parametric estimation technique to plot a curve (the kernel) at every individual data point. These curves are then added to plot a smooth density estimation. The kernel most often used is a Gaussian (which produces a bell curve at each data point). Other kernels can be used in special cases when the underlying distribution is not normal. 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Comparison_of_1D_histogram_and_KDE.png/1000px-Comparison_of_1D_histogram_and_KDE.png" width = 700>
+<img src="images/density_and_hist.png" width ="750">
+
+In the image above, the histogram (left) and kernel density estimate (right) are constructed using the same data.
+
+## Expected Value and Variance 
+
+Next, let's explore expected value and Variance for PDFs. Recall the following two formulas for PMFs:
+
+$$\large  E(X) = \mu = \sum_i p(x_i)x_i$$
+$$\large E((X-\mu)^2) = \sigma^2 = \sum_i p(x_i)(x_i-\mu)^2$$
 
 
-The histogram (left) and kernel density estimate (right) are constructed using the same data. The 6 individual kernels are the red dashed curves, the kernel density estimate the blue curves. The tiny black vertical lines on x axes are called the "Rug plot". 
+We want to translate this to something we can use in this context of Probability density functions. Note how $P(X=x_i)=p(x_i)$ is part of this formula, and how we mentioned before that for PDFs, the probability of our random variable taking exactly a specified value is 0. We need to change our formulas slightly, and this can be done by using **integrals**:
+
+$$ \large E(X) = \mu = \int_{- \infty}^{+ \infty} p(x)x dx$$
+$$ \large E((X-\mu)^2) = \sigma^2  = \int_{- \infty}^{+ \infty} p(x)(x-\mu)^2 dx$$
 
 
+Recall how the integral basically is a measure to calculate the area under a certain curve. Thinking of it this way, the transition from a histogram to a curve makes much more sense as well. Let's look at the plot below for an illustration. If you want to get the probability to obtain exactly 9, you would get a 1-dimensional line down which isn't really an "area". For this reason, $P(X=9)=0$. 
+
+If you want to have the probability of observing a value within a specific range though, you can look at the area under the curve to obtain this probability as highlighted in red below:
+
+
+![](images/pdf2.jpg)
+
+The formal mathematical representation for calculating an area under the curve is given by:
+
+$$\large F(X) = P(a \leq x \leq b) = \int_a^b f(x) dx \geq 0 $$
+
+> To obtain a probability of observing a value in an interval $[a,b]$, you can use an integral (which gives you the area under the curve) from a to b using your PDF $f(x)$ 
+
+Don't worry too much about the adapted formula for PDFs. The main takeaway here is that you simply can't use the same summation expression because $P(X=x_i) = 0$ for any $x_i$.
 
 ## Seaborn 
 
-At this stage , let us give you a quick intro. to another popular visualization library called **Seaborn**, which can do wonders for statistical visualizations. We shall quickly look into plotting density plots at this stage, and revisit it again in a later section to highlight its full potential. 
+At this stage, it's useful to have another look at the visualization library **Seaborn**, which can do wonders for statistical visualizations.
 
-Let's import this module into our environment first.
+
+We'll quickly introduce density plot creation using Seaborn here. You'll learn about other Seaborn plots at a later stage!
+
+Let's import the Seaborn environment first.
 
 
 ```python
 import seaborn as sns
 ```
 
-The function that we are interested in right now is  the `seaborn.distplot()` function in seaborn which can help visualize a distribution in a number of statistical ways including histograms, density plots, area plots with a huge range of coloring and customization features. 
+The function that we are interested in right now is  the `seaborn.distplot()` function which can help visualize a distribution in a number of statistical ways including histograms, density plots, and area plots with a lot of coloring and customization features. 
 ```
 seaborn.distplot(a, bins=None, hist=True, kde=True, rug=False, fit=None, hist_kws=None, kde_kws=None, rug_kws=None, fit_kws=None, color=None, vertical=False, norm_hist=False, axlabel=None, label=None, ax=None)
 ```
+ [Here is the official documentation](https://seaborn.pydata.org/generated/seaborn.distplot.html) if you want to learn more!
 
-Wow ..check out the amount of options there, an it returns a matplotlib axes object to further modify and prettify it. [Here is the official documentation](https://seaborn.pydata.org/generated/seaborn.distplot.html) - go explore. 
+## Let's Look at Some Data
 
-#### Get Some data
-
-We shall use a dataset called Weight and Height dataset containing 10,000 observations about the heights and weights of individuals , grouped as male an female. Let's load the dataset in our python environment.
+We'll look at another weight-height dataset, this time containing 10,000 observations about the heights and weights of individuals, grouped by gender. Let's load the dataset first.
 
 
 ```python
@@ -198,14 +229,14 @@ data.describe()
 
 
 
-Let's plot the density plot for data in the `Height` column using seaborn `distplot()`. We shall create label and prettify this plot here to highlight the powerful visualization abilities of seaborn. For this data, we shall be plotting:
+Let's plot the density plot for data in the `Height` column using seaborn `distplot()`. We'll be plotting:
+
 * a Box and Whiskers plot 
 * a histogram 
-* Non parametric Kernel Density Estimation plot
+* a non-parametric Kernel Density Estimation plot
 * Parametric distribution fit plot
-* Provide options for customizations using keywords object specific _kws{}
 
-.. all in a single go. 
+... all in one single go. 
 
 
 ```python
@@ -217,7 +248,7 @@ fig, (ax, ax2) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15
 sns.distplot(data.Height, 
              hist=True, hist_kws={
                                   "linewidth": 2,
-                                  "edgecolor" :'salmon',
+                                  "edgecolor" :'red',
                                   "alpha": 0.4, 
                                   "color":  "w",
                                   "label": "Histogram",
@@ -234,44 +265,25 @@ sns.distplot(data.Height,
              ax=ax2)
 ax2.set_title('Density Estimations')
 
-sns.boxplot(x=data.Height, ax = ax,color = 'salmon')
+sns.boxplot(x=data.Height, ax = ax,color = 'red')
 ax.set_title('Box and Whiskers Plot')
 ax2.set(ylim=(0, .08))
 plt.ylim(0,0.11)
-plt.legend()
-
+plt.legend();
 ```
 
 
+![png](index_files/index_18_0.png)
 
 
-    <matplotlib.legend.Legend at 0x1a13d5e6d8>
+You can see how you can easily visualize multiple statistical aspects of a distribution.
 
-
-
-
-![png](index_files/index_17_1.png)
-
-
-So you see how we can visualize multiple statistical aspects of a distribution with seaborn with such ease. This has saved us from calculating histograms, normalizing them , finding probabilities etc. You can further customize these plots to your heart's content. Have a look at official seaborn documentation for their color pellets, styles, labelling options etc. 
-
-We can also use seaborn distplot to view the cdf function for constinuous variables. You are encouraged to use `distplot()` for quick visualizations around different aspects of distributions under study. 
-
-
-```python
-sns.distplot(data.Height,
-             hist_kws=dict(cumulative=True),
-             kde_kws=dict(cumulative=True));
-
-```
-
-
-![png](index_files/index_19_0.png)
+You can further customize these plots as you wish. You can have a look at official seaborn documentation for their color pellets, styles, labeling options etc. 
 
 
 ## Interpolation
 
-Another (rather naive - yet effective) way is to estimate a density function using interpolation between the peaks of histogram. We can use the np.histogram function to calculate histogram values and interpolate between these values to plot a density curve.\
+Another (rather naive - yet effective) way is to estimate a density function using interpolation between the peaks of the histogram. We can use the `np.histogram` function to calculate histogram values and interpolate between these values to plot a density curve.
 
 
 ```python
@@ -295,7 +307,7 @@ n , bins
 
 
 
-Here `n` are the values of histogram and `bins` are the bin positions along x -axis. We can interpolate between these values to calculate the points for density curve as shown below. 
+Here `n` are the values of histogram and `bins` are the bin positions along x -axis. We can interpolate between these values to calculate the points for density curve as you can see below. 
 
 
 ```python
@@ -310,25 +322,18 @@ for k in range(n.size):
     pdfy[k] = n[k]
 
 # plot the calculated curve
-plt.plot(pdfx, pdfy)
-
+plt.plot(pdfx, pdfy);
 ```
 
 
+![png](index_files/index_23_0.png)
 
 
-    [<matplotlib.lines.Line2D at 0x1a1daaec88>]
-
-
-
-
-![png](index_files/index_23_1.png)
-
-
-There we have it. This plot reflects our density function. We can plot it on top of our normalized histogram now and get a complete picture of underlying data. 
+That looks reasonable! This plot reflects our density function. You can plot it on top of the normalized histogram now,and get a complete picture of underlying data. 
 
 
 ```python
+plt.figure(figsize=(7,5))
 data.Height.plot.hist(bins = 20, normed=True, label = 'Normalized histogram', alpha = 0.7)
 # plot the calculated curve
 plt.plot(pdfx, pdfy, label = 'Density function')
@@ -342,8 +347,9 @@ plt.show()
 ![png](index_files/index_25_0.png)
 
 
-So here it is. Our normalized histogram with a probability density curve. We shall move to a lab and exercise a bit more on these ideas next to analyze this dataset. 
+This looks pretty good! In the next lab, you'll practice your knowledge!
 
+** NOTE **: Be careful when using this naive interpolation method! The results very much depends on the number of bins used when creating your histogram.
 
 ## Summary
-In this lesson we looked at the probability density function and identified the difference between point probabilities that we saw with categorical variables, to probability density functions for continuous variables. One very important note was the probability of a continuous variable taking a an exact value is zero! Instead, we saw that we must look at probabilities of a continuous variable falling with a range of values. This corresponded to calculating the area between these bounds under the PDF. We shall further explore these ideas in proceeding lessons. 
+In this lesson, you learned about the probability density function, and identified the difference between point probabilities (for PMFs) and PMFs for continuous variables. One important takeaway is that the probability of a specific value for a continuous variable is zero! You can use integrals to get probabilities for a range of values when using PDFs. The idea of taking ranges of values will become more important when looking at Cumulative Density Functions, but let's practice our PDF knowledge first! 
