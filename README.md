@@ -107,7 +107,7 @@ If you want to have the probability of observing a value within a specific range
 
 The formal mathematical representation for calculating an area under the curve is given by:
 
-$$\large F(X) = P(a \leq x \leq b) = \int_a^b f(x) dx \geq 0 $$
+$$ \Large P(a \leq x \leq b) = \int_a^b f(x) dx \geq 0 $$
 
 > To obtain a probability of observing a value in an interval $[a,b]$, you can use an integral (which gives you the area under the curve) from a to b using your PDF $f(x)$ 
 
