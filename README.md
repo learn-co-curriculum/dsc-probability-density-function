@@ -57,7 +57,7 @@ Looking at the histogram, and based on the middle bin, you can make the followin
 
 This is a typical probability pass function statement, where one bar or bin is associated with a fixed probability. The reason why we were able to do this, is because we _binned_ the temperatures.
 
-When looking at Probability Density Functions, however, you need to be **very** careful when reading probability density functions, especially when it comes to exact numbers. For example, think about this: if we have a very high tech thermometer, what is the probability that the temperature in NYC on June 1 is _exactly_ 80 Degrees?
+When interpreting Probability Density Functions, you need to be **very** careful about determining probabilities for certain events, especially when it comes to exact numbers of events occurring. For example, think about this: if we have a very high tech thermometer, what is the probability that the temperature in NYC on June 1 is _exactly_ 80 Degrees?
 
 $$P(\text{Temp}=80)$$
 
