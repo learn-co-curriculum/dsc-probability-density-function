@@ -6,10 +6,11 @@ So far, you learned about discrete random variables and how to calculate or visu
 
 ## Objectives
 You will be able to:
-* Understand the use of calculating PDFs for real-valued random variables
-* Differentiate between probability and probability densities
-* Visualize Density Estimation plots for a given dataset using Seaborn
-* Calculate PDFs through interpolation 
+
+* Calculate the PDF from a given dataset containing real-valued random variables
+* Differentiate between probability and probability density
+* Explain why it is not possible to calculate the probability for a specific point with continuous variables
+* Estimate probabilities for continuous variables by using interpolation 
 
 ## Continuous Variables
 
