@@ -126,6 +126,8 @@ Let's import the Seaborn library first.
 
 ```python
 import seaborn as sns
+import warnings
+warnings.filterwarnings(action='ignore', category=FutureWarning)
 ```
 
 The function that we are interested in right now is  the `seaborn.distplot()` function which can help visualize a distribution in a number of statistical ways including histograms, density plots, and area plots with a lot of coloring and customization features. 
@@ -335,7 +337,7 @@ That looks reasonable! This plot reflects our density function. You can plot it 
 
 ```python
 plt.figure(figsize=(7,5))
-data.Height.plot.hist(bins = 20, normed=True, label = 'Normalized histogram', alpha = 0.7)
+data.Height.plot.hist(bins = 20, density=True, label = 'Normalized histogram', alpha = 0.7)
 # plot the calculated curve
 plt.plot(pdfx, pdfy, label = 'Density function')
 plt.ylabel ('Probabilities')
