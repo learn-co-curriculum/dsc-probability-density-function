@@ -1,4 +1,3 @@
-
 # The Probability Density Function (PDF)
 
 ## Introduction
@@ -42,11 +41,9 @@ The histogram you see here may remind you very much of the PMF you saw before! R
 For the distribution of NYC temperatures, the mean region has a high probability density as compared to tails. This means that more extreme temperatures (roughly <70 or >90) are way less likely on a late spring day like June 1. 
 The function shape here is an example of a **Normal Distribution**, which you'll learn more about later.
 
->The probability density function (also called a probability distribution function) shows all possible values for temperature, which in theory has an infinite amount of possibilities. 
+The probability density function (a probability distribution function) shows all possible values for temperature, which in theory has an infinite amount of possibilities. 
 
-
-
-## Interpreting the PDF
+## Interpreting the PDF
 
 Let's look at this plot again and the y-axis:
 
@@ -110,16 +107,13 @@ The formal mathematical representation for calculating an area under the curve i
 
 $$ \Large P(a \leq x \leq b) = \int_a^b f(x) dx \geq 0 $$
 
-> To obtain a probability of observing a value in an interval $[a,b]$, you can use an integral (which gives you the area under the curve) from a to b using your PDF $f(x)$ 
+To obtain a probability of observing a value in an interval $[a,b]$, you can use an integral (which gives you the area under the curve) from a to b using your PDF $f(x)$ 
 
 Don't worry too much about the adapted formula for PDFs. The main takeaway here is that you simply can't use the same summation expression because $P(X=x_i) = 0$ for any $x_i$.
 
 ## Seaborn 
 
 At this stage, it's useful to have another look at the visualization library **Seaborn**, which can do wonders for statistical visualizations.
-
-
-We'll quickly introduce density plot creation using Seaborn here. You'll learn about other Seaborn plots at a later stage!
 
 Let's import the Seaborn library first.
 
@@ -276,12 +270,12 @@ plt.legend();
 ```
 
 
-![png](index_files/index_18_0.png)
+![png](index_files/index_17_0.png)
 
 
 You can see how you can easily visualize multiple statistical aspects of a distribution.
 
-You can further customize these plots as you wish. You can have a look at official Seaborn documentation for their color pellets, styles, labeling options, etc. 
+You can further customize these plots as you wish. You can have a look at official Seaborn documentation for their color palettes, styles, labeling options, etc. 
 
 
 ## Interpolation
@@ -329,7 +323,7 @@ plt.plot(pdfx, pdfy);
 ```
 
 
-![png](index_files/index_23_0.png)
+![png](index_files/index_22_0.png)
 
 
 That looks reasonable! This plot reflects our density function. You can plot it on top of the normalized histogram now and get a complete picture of underlying data. 
@@ -347,7 +341,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_25_0.png)
+![png](index_files/index_24_0.png)
 
 
 This looks pretty good! In the next lab, you'll practice your knowledge!
