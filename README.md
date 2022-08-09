@@ -115,20 +115,21 @@ Don't worry too much about the adapted formula for PDFs. The main takeaway here 
 
 At this stage, it's useful to have another look at the visualization library **Seaborn**, which can do wonders for statistical visualizations.
 
-Let's import the Seaborn library first.
+Let's import our libraries first, including Seaborn.
 
 
 ```python
 import seaborn as sns
-import warnings
-warnings.filterwarnings(action='ignore', category=FutureWarning)
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+import pandas as pd 
+import scipy.stats as stats
+import numpy as np
 ```
 
-The function that we are interested in right now is  the `seaborn.distplot()` function which can help visualize a distribution in a number of statistical ways including histograms, density plots, and area plots with a lot of coloring and customization features. 
-```
-seaborn.distplot(a, bins=None, hist=True, kde=True, rug=False, fit=None, hist_kws=None, kde_kws=None, rug_kws=None, fit_kws=None, color=None, vertical=False, norm_hist=False, axlabel=None, label=None, ax=None)
-```
- [Here is the official documentation](https://seaborn.pydata.org/generated/seaborn.distplot.html) if you want to learn more!
+The functions that we are interested in right now are `seaborn.histplot()` and `seaborn.kdeplot()`.
+
+The official documentation for these functions are [here](https://seaborn.pydata.org/generated/seaborn.histplot.html) and [here](https://seaborn.pydata.org/generated/seaborn.kdeplot.html) if you want to learn more!
 
 ## Let's Look at Some Data
 
@@ -136,10 +137,6 @@ We'll look at another weight-height dataset, this time containing 10,000 observa
 
 
 ```python
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
-import pandas as pd 
-
 data = pd.read_csv('weight-height.csv')
 
 print(data.head())
@@ -226,7 +223,7 @@ data.describe()
 
 
 
-Let's plot the density plot for data in the `Height` column using seaborn `distplot()`. We'll be plotting:
+Let's plot the density plot for data in the `Height` column using our Seaborn functions. We'll be plotting:
 
 * a Box and Whiskers plot 
 * a histogram 
@@ -237,40 +234,52 @@ Let's plot the density plot for data in the `Height` column using seaborn `distp
 
 
 ```python
-import scipy.stats as stats
 # Create two vertical subplots sharing 15% and 85% of plot space
 # sharex allows sharing of axes i.e. building multiple plots on same axes
 fig, (ax, ax2) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15, .85)}, figsize = (10,8) )
 
-sns.distplot(data.Height, 
-             hist=True, hist_kws={
-                                  "linewidth": 2,
-                                  "edgecolor" :'red',
-                                  "alpha": 0.4, 
-                                  "color":  "w",
-                                  "label": "Histogram",
-                                  },
-             kde=True, kde_kws = {'linewidth': 3,
-                                  'color': "blue",
-                                  "alpha": 0.7,
-                                  'label':'Kernel Density Estimation Plot'
-                                 },
-             fit= stats.norm, fit_kws = {'color' : 'green',
-                                         'label' : 'parametric fit',
-                                         "alpha": 0.7,
-                                          'linewidth':3},
+sns.histplot(data.Height,
+             linewidth=2,
+             edgecolor="r",
+             alpha=0.4,
+             color="w",
+             label="Histogram",
+             stat="density",
              ax=ax2)
+
+
+sns.kdeplot(data.Height,
+           linewidth=3,
+           color="b",
+           alpha=0.7,
+           label="Kernel Density Estimation Plot",
+           ax=ax2)
+
+mean = data.Height.mean()
+std = data.Height.std()
+parametric_dist = stats.norm(loc=mean, scale=std)
+x = np.linspace(parametric_dist.ppf(0.01), parametric_dist.ppf(0.99), 100)
+
+ax2.plot(x,
+         parametric_dist.pdf(x),
+            color="g",
+            alpha=0.7,
+            linewidth=3,
+            label="Parametric Fit")
+
 ax2.set_title('Density Estimations')
 
 sns.boxplot(x=data.Height, ax = ax,color = 'red')
 ax.set_title('Box and Whiskers Plot')
-ax2.set(ylim=(0, .08))
-plt.ylim(0,0.11)
+ax2.set(ylim=(0, 0.08))
+plt.ylim(0, 0.11)
 plt.legend();
 ```
 
 
+    
 ![png](index_files/index_17_0.png)
+    
 
 
 You can see how you can easily visualize multiple statistical aspects of a distribution.
@@ -323,7 +332,9 @@ plt.plot(pdfx, pdfy);
 ```
 
 
+    
 ![png](index_files/index_22_0.png)
+    
 
 
 That looks reasonable! This plot reflects our density function. You can plot it on top of the normalized histogram now and get a complete picture of underlying data. 
@@ -341,7 +352,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_24_0.png)
+    
 
 
 This looks pretty good! In the next lab, you'll practice your knowledge!
