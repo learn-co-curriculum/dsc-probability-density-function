@@ -322,7 +322,7 @@ pdfx = np.zeros(n.size)
 pdfy = np.zeros(n.size)
 
 # Interpolate through histogram bins 
-# identify middle point between two neighbouring bins, in terms of x and y coords
+# identify middle point between two neighboring bins, in terms of x and y coords
 for k in range(n.size):
     pdfx[k] = 0.5*(bins[k]+bins[k+1])
     pdfy[k] = n[k]
