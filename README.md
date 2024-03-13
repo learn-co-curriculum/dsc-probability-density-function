@@ -357,9 +357,9 @@ plt.show()
     
 
 
-This looks pretty good! In the next lab, you'll practice your knowledge!
+This looks pretty good.
 
 **NOTE**: Be careful when using this naive interpolation method! The results depend very much on the number of bins used when creating your histogram.
 
 ## Summary
-In this lesson, you learned about the probability density function and identified the difference between point probabilities (for PMFs) and PMFs for continuous variables. One important takeaway is that the probability of a specific value for a continuous variable is zero! You can use integrals to get probabilities for a range of values when using PDFs. The idea of taking ranges of values will become more important when looking at Cumulative Density Functions, but let's practice our PDF knowledge first! 
+In this lesson, you learned about the probability density function and identified the difference between point probabilities (for PMFs) and PMFs for continuous variables. One important takeaway is that the probability of a specific value for a continuous variable is zero! You can use integrals to get probabilities for a range of values when using PDFs. The idea of taking ranges of values will become more important when looking at Cumulative Density Functions.
